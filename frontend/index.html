@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Trend-Aware Recommendation System</title>
+    <meta name="description" content="AI-driven product recommendation system with real-time trending signals, collaborative filtering, and explainable AI.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Animated background -->
+        <div class="bg-animation">
+            <div class="bg-orb orb-1"></div>
+            <div class="bg-orb orb-2"></div>
+            <div class="bg-orb orb-3"></div>
+        </div>
+
+        <!-- Header -->
+        <header class="header">
+            <div class="header-inner">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                    </div>
+                    <span class="logo-text">TrendAI<span class="logo-accent">Rec</span></span>
+                </div>
+                <nav class="nav">
+                    <button class="nav-btn active" data-tab="dashboard" id="nav-dashboard">Dashboard</button>
+                    <button class="nav-btn" data-tab="recommendations" id="nav-recommendations">Recommendations</button>
+                    <button class="nav-btn" data-tab="trending" id="nav-trending">Trending</button>
+                    <button class="nav-btn" data-tab="system" id="nav-system">System</button>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main">
+            <!-- Dashboard Tab -->
+            <section id="tab-dashboard" class="tab-content active">
+                <div class="section-header">
+                    <h1>System Overview</h1>
+                    <p class="subtitle">Real-time metrics and recommendation health</p>
+                </div>
+                <div class="metrics-grid" id="metrics-grid"></div>
+                <div class="two-col">
+                    <div class="card">
+                        <h3 class="card-title">🔥 Top Trending Right Now</h3>
+                        <div id="dashboard-trending" class="trending-list"></div>
+                    </div>
+                    <div class="card">
+                        <h3 class="card-title">❄️ Cold-Start Status</h3>
+                        <div id="cold-start-info"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Recommendations Tab -->
+            <section id="tab-recommendations" class="tab-content">
+                <div class="section-header">
+                    <h1>Get Recommendations</h1>
+                    <p class="subtitle">Personalized + Trend-aware hybrid recommendations with explanations</p>
+                </div>
+                <div class="rec-controls card">
+                    <div class="control-row">
+                        <div class="control-group">
+                            <label for="user-select">Select User</label>
+                            <select id="user-select" class="input-select"></select>
+                        </div>
+                        <div class="control-group">
+                            <label for="num-recs">Count</label>
+                            <input type="number" id="num-recs" value="10" min="1" max="50" class="input-field">
+                        </div>
+                        <div class="control-group">
+                            <label for="trend-weight">Trend Weight: <span id="tw-val">0.3</span></label>
+                            <input type="range" id="trend-weight" min="0" max="1" step="0.05" value="0.3" class="input-range">
+                        </div>
+                        <div class="control-group">
+                            <label for="diversity">Diversity: <span id="div-val">0.2</span></label>
+                            <input type="range" id="diversity" min="0" max="1" step="0.05" value="0.2" class="input-range">
+                        </div>
+                        <button id="get-recs-btn" class="btn-primary">Get Recommendations</button>
+                    </div>
+                    <div id="user-info-badge" class="user-badge"></div>
+                </div>
+                <div id="strategy-badge" class="strategy-badge"></div>
+                <div id="recs-grid" class="recs-grid"></div>
+            </section>
+
+            <!-- Trending Tab -->
+            <section id="tab-trending" class="tab-content">
+                <div class="section-header">
+                    <h1>Trending Products</h1>
+                    <p class="subtitle">Real-time interaction velocity with exponential time-decay</p>
+                </div>
+                <div class="trending-controls card">
+                    <div class="control-row">
+                        <div class="control-group">
+                            <label for="trend-category">Category</label>
+                            <select id="trend-category" class="input-select"><option value="">All Categories</option></select>
+                        </div>
+                        <div class="control-group">
+                            <label for="trend-window">Window (hours)</label>
+                            <select id="trend-window" class="input-select">
+                                <option value="6">6h</option>
+                                <option value="24" selected>24h</option>
+                                <option value="48">48h</option>
+                                <option value="168">7 days</option>
+                            </select>
+                        </div>
+                        <button id="get-trending-btn" class="btn-primary">Refresh</button>
+                    </div>
+                </div>
+                <div id="trending-grid" class="trending-grid"></div>
+            </section>
+
+            <!-- System Tab -->
+            <section id="tab-system" class="tab-content">
+                <div class="section-header">
+                    <h1>System Evolution</h1>
+                    <p class="subtitle">Model health, trend lifecycle, and over-amplification monitoring</p>
+                </div>
+                <div id="system-details"></div>
+            </section>
+        </main>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
